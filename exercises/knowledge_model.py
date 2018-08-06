@@ -27,5 +27,5 @@ class Knowledge(Base):
 			    "article topic {}\n"
 			    "rating {}\n").format(self.main_topic,self.name_of_article,self.article_topic,self.rating)
 
-print(repr(Knowledge.__table__))
+#print(repr(Knowledge.__table__))
 
