@@ -16,7 +16,7 @@ def add_article(main_topic,name_of_article,article_topic,rating):
 		rating = rating )
 	session.add(new_row)
 	session.commit()
-add_article("Dance","The basics abount dance","how did dance develop over the years",8)
+# add_article("Dance","The basics abount dance","how did dance develop over the years",8)
 def query_all_articles():
 	new_row = session.query(Knowledge).all()
 	return new_row 
@@ -27,18 +27,32 @@ def query_article_by_topic(main_topic):
 	return new_row
 print(query_article_by_topic("Dance"))
 
-def query_article_by_rating(rating):
-	threshold = input("please enter your threshold, you will get the articals below")
-	new_row = session.query(Knowledge).filter_by(rating<=threshold).all()
-	return new_row
-print(query_article_by_rating(1))
+# def query_article_by_rating(rating):
+# 	threshold = input("please enter your threshold, you will get the articals below")
+# 	new_row = session.query(Knowledge).filter_by(rating<=threshold).all()
+# 	return new_row
+# print(query_article_by_rating(1))
 
-def delete_article_by_topic():
-	pass
-
+def delete_article_by_topic(main_topic):
+	session.query(Knowledge).filter_by(main_topic = main_topic).delete()
+	session.commit()
+# delete_article_by_topic("Dance")
 def delete_all_articles():
-	pass
+	session.query(Knowledge).delete()
+	session.commit()
+# delete_all_articles()
 
-def edit_article_rating():
-	pass
+def edit_article_rating(main_topic, updated_rating):
+	articles = session.query(Knowledge).filter_by(main_topic = main_topic).all()
+	for article in articles:
+		article.rating = updated_rating 
+	session.commit() 
+edit_article_rating("Dance", 6)
+
+# delete_article_by_rating():
+
+
+
+
+
 
